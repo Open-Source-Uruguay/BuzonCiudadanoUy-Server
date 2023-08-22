@@ -1,6 +1,8 @@
+
 # environment files
 .env
 .env.prod
+/secrets
 
 # compiled output
 /dist
