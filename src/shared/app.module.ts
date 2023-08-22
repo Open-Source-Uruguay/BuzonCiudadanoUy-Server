@@ -12,10 +12,10 @@ import { AuthModule } from 'src/auth/auth.module';
       load: [config],
     }),
     MongooseModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('mongoUri'),
+      }),
       inject: [ConfigService],
-      useFactory: async (configSecret: ConfigService) => ({
-        uri: configSecret.get('mongoUri')
-      })
     }),
     UserModule,
     AuthModule
@@ -24,3 +24,12 @@ import { AuthModule } from 'src/auth/auth.module';
   providers: [],
 })
 export class AppModule {}
+
+/*
+{
+      inject: [ConfigService],
+      useFactory: async (configSecret: ConfigService) => ({
+        uri: configSecret.get('mongoUri')
+      })
+    }
+  */
